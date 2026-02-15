@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { Book } from '@/lib/mockBooksData';
 
 type BookCardProps = {
   book: Book;
