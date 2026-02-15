@@ -168,30 +168,30 @@ export default function ProfilePage() {
                     <div className="inline-flex gap-2 bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-2 border border-gray-200 dark:border-slate-700 shadow-lg">
                         <button
                             onClick={() => setActiveTab("myBooks")}
-                            className={`inline-flex items-center gap-2 rounded-xl px-8 py-3.5 text-sm font-bold transition-all duration-300 ${
+                            className={`inline-flex items-center gap-2 rounded-xl px-8 py-3.5 text-sm font-bold transition-all duration-300 relative ${
                                 activeTab === "myBooks"
-                                    ? "bg-warmOrange text-white shadow-xl shadow-warmOrange/40 scale-105"
-                                    : "text-warmBrown/70 dark:text-slate-300 hover:text-warmBrown dark:hover:text-white hover:bg-warmBeige/50 dark:hover:bg-slate-700/50"
+                                    ? "bg-[#C17144] text-white shadow-xl shadow-orange-500/40 scale-105 z-10"
+                                    : "text-warmBrown dark:text-slate-300 hover:text-warmBrown dark:hover:text-white bg-gray-100 dark:bg-slate-700/50 hover:bg-gray-200 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600"
                             }`}
                         >
-                            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="h-5 w-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                             </svg>
-                            My Books ({userBooks.length})
+                            <span className="relative z-10 drop-shadow-sm">My Books ({userBooks.length})</span>
                         </button>
 
                         <button
                             onClick={() => setActiveTab("favorites")}
-                            className={`inline-flex items-center gap-2 rounded-xl px-8 py-3.5 text-sm font-bold transition-all duration-300 ${
+                            className={`inline-flex items-center gap-2 rounded-xl px-8 py-3.5 text-sm font-bold transition-all duration-300 relative ${
                                 activeTab === "favorites"
-                                    ? "bg-warmOrange text-white shadow-xl shadow-warmOrange/40 scale-105"
-                                    : "text-warmBrown/70 dark:text-slate-300 hover:text-warmBrown dark:hover:text-white hover:bg-warmBeige/50 dark:hover:bg-slate-700/50"
+                                    ? "bg-[#C17144] text-white shadow-xl shadow-orange-500/40 scale-105 z-10"
+                                    : "text-warmBrown dark:text-slate-300 hover:text-warmBrown dark:hover:text-white bg-gray-100 dark:bg-slate-700/50 hover:bg-gray-200 dark:hover:bg-slate-600 border border-gray-200 dark:border-slate-600"
                             }`}
                         >
-                            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="h-5 w-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                             </svg>
-                            Favorites ({favoriteBooks.length})
+                            <span className="relative z-10 drop-shadow-sm">Favorites ({favoriteBooks.length})</span>
                         </button>
                     </div>
                 </div>
@@ -265,4 +265,5 @@ export default function ProfilePage() {
         </div>
     );
 }
+
 
