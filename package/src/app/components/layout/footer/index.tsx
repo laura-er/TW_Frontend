@@ -24,19 +24,8 @@ const Footer = () => {
             <div className="dark:bg-surfaceDark ">
                 <div className="container">
                     <div className="flex flex-col md:flex-row gap-3 items-center text-center justify-between py-8 border-b border-gray">
-                        <p className="text-navyGray dark:text-white/80">© Blogforce - All Rights Reserved, Created by
-                            <Link href={"https://getnextjstemplates.com/"} className="hover:text-primary"> Getnextjstemplates.com</Link>
+                        <p className="text-navyGray dark:text-white/80">© Read & Swap - All Rights Reserved
                         </p>
-                        <div className="flex items-center gap-8">
-                            {menuData?.socialLinks?.map((item: any, index: any) => {
-                                return (
-                                    <Link href={item?.link} key={index}>
-                                        <Image src={item?.icon} alt="social-icon" width={24} height={24} className="hover:opacity-70 block dark:hidden" />
-                                        <Image src={item?.dark_icon} alt="social-icon" width={24} height={24} className="hover:opacity-70 hidden dark:block" />
-                                    </Link>
-                                )
-                            })}
-                        </div>
                     </div>
                     <div className="py-6 ">
                         <ul className="flex flex-wrap items-center justify-center gap-1">
