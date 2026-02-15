@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import SocialSignIn from "../SocialSignIn";
 import { useState } from "react";
 import Loader from "../../shared/loader";
 import Logo from "../../layout/logo";
@@ -88,15 +87,6 @@ const SignUp = () => {
                                 <div className="mb-8 flex justify-center">
                                     <Logo />
                                 </div>
-
-                                <SocialSignIn actionText="Sign Up" />
-
-                                <span className="z-1 relative my-8 block text-center">
-                                    <span className="-z-1 absolute left-0 top-1/2 block h-px w-full bg-primary/20 dark:bg-white/20"></span>
-                                    <span className="text-sm relative z-10 inline-block text-navyGray dark:text-white/80 bg-white dark:bg-surfaceDark px-3">
-                                        OR
-                                    </span>
-                                </span>
 
                                 <form onSubmit={handleSubmit}>
                                     <div className="mb-4 text-left">
