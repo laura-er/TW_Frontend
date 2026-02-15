@@ -101,10 +101,31 @@ const BookCard = ({ book }: BookCardProps) => {
               </p>
             </div>
           </div>
+
+          {/* Swap Button */}
+          {book?.availableForSwap ? (
+              <Link
+                  href={`/swap/${book?.id}`}
+                  className="w-full bg-black dark:bg-white text-white dark:text-black hover:bg-black/80 dark:hover:bg-white/80 py-2.5 px-4 rounded-md font-medium text-center transition-colors duration-300 flex items-center justify-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                </svg>
+                Request Swap
+              </Link>
+          ) : (
+              <button
+                  disabled
+                  className="w-full bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 py-2.5 px-4 rounded-md font-medium text-center cursor-not-allowed"
+              >
+                Not Available
+              </button>
+          )}
         </div>
       </div>
   );
 };
 
 export default BookCard;
+
 
