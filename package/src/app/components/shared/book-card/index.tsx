@@ -7,7 +7,7 @@ type BookCardProps = {
 
 const BookCard = ({ book }: BookCardProps) => {
   return (
-      <div className="shadow-card rounded-md hover:scale-[1.01] transition-transform duration-300">
+      <div className="shadow-card rounded-md hover:scale-[1.01] transition-transform duration-300 flex flex-col h-full">
         <div className="relative w-full h-[320px] overflow-hidden rounded-t-md">
           <Link href={`/book/${book?.id}`}>
             {book?.cover_image &&
@@ -37,7 +37,7 @@ const BookCard = ({ book }: BookCardProps) => {
           </span>
           )}
         </div>
-        <div className="relative p-6 pt-8 flex flex-col gap-5">
+        <div className="relative p-6 pt-8 flex flex-col justify-between h-full">
           {/* Owner Avatar */}
           <div className="group absolute -top-6 left-7 z-20">
             <div className="absolute -top-9 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-gray-800 text-white text-xs rounded-md shadow-lg opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 whitespace-nowrap">

@@ -58,7 +58,7 @@ const GenreComp = ({ books }: { books: any[] }) => {
                         </div>
 
                         {/* Book Cards */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
                             {filteredBooks.slice(0, 6).map((book, index) => (
                                 <BookCard key={index} book={book} />
                             ))}
