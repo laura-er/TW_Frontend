@@ -165,13 +165,13 @@ export default function ProfilePage() {
             <div className="mx-auto max-w-6xl px-6 py-12">
                 {/* Tabs */}
                 <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-                    <div className="inline-flex gap-2 bg-slate-800/50 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl p-2 border border-slate-700 dark:border-slate-600">
+                    <div className="inline-flex gap-2 bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-2 border border-gray-200 dark:border-slate-700 shadow-lg">
                         <button
                             onClick={() => setActiveTab("myBooks")}
                             className={`inline-flex items-center gap-2 rounded-xl px-8 py-3.5 text-sm font-bold transition-all duration-300 ${
                                 activeTab === "myBooks"
                                     ? "bg-warmOrange text-white shadow-xl shadow-warmOrange/40 scale-105"
-                                    : "text-slate-300 dark:text-slate-400 hover:text-white hover:bg-slate-700/50"
+                                    : "text-warmBrown/70 dark:text-slate-300 hover:text-warmBrown dark:hover:text-white hover:bg-warmBeige/50 dark:hover:bg-slate-700/50"
                             }`}
                         >
                             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -185,7 +185,7 @@ export default function ProfilePage() {
                             className={`inline-flex items-center gap-2 rounded-xl px-8 py-3.5 text-sm font-bold transition-all duration-300 ${
                                 activeTab === "favorites"
                                     ? "bg-warmOrange text-white shadow-xl shadow-warmOrange/40 scale-105"
-                                    : "text-slate-300 dark:text-slate-400 hover:text-white hover:bg-slate-700/50"
+                                    : "text-warmBrown/70 dark:text-slate-300 hover:text-warmBrown dark:hover:text-white hover:bg-warmBeige/50 dark:hover:bg-slate-700/50"
                             }`}
                         >
                             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
