@@ -1,3 +1,5 @@
+import { USERS } from './usersConfig';
+
 export interface Book {
     id: number;
     title: string;
@@ -42,8 +44,8 @@ export const mockBooks: Book[] = [
         genre: "Classic Fiction",
         condition: "Good",
         cover_image: "https://covers.openlibrary.org/b/id/7222246-L.jpg",
-        owner_name: "Maria Popescu",
-        owner_image: "https://i.pravatar.cc/150?img=1",
+        owner_name: USERS.MARIA_POPESCU.name,
+        owner_image: USERS.MARIA_POPESCU.avatar,
         availableForSwap: true,
         featured: false,
         rating: 4.5,
@@ -53,16 +55,16 @@ export const mockBooks: Book[] = [
         reviews: [
             {
                 id: 1,
-                userName: "Ion Ionescu",
-                userImage: "https://i.pravatar.cc/150?img=2",
+                userName: USERS.ION_IONESCU.name,
+                userImage: USERS.ION_IONESCU.avatar,
                 rating: 5,
                 comment: "An absolute masterpiece! Fitzgerald's prose is beautiful and the story is captivating.",
                 date: "2024-01-15"
             },
             {
                 id: 2,
-                userName: "Ana Georgescu",
-                userImage: "https://i.pravatar.cc/150?img=3",
+                userName: USERS.ANA_GEORGESCU.name,
+                userImage: USERS.ANA_GEORGESCU.avatar,
                 rating: 4,
                 comment: "Great book with complex characters and themes.",
                 date: "2024-01-20"
@@ -70,7 +72,7 @@ export const mockBooks: Book[] = [
         ],
         swapHistory: [
             {
-                swappedWith: "Elena Vasilescu",
+                swappedWith: USERS.ELENA_VASILESCU.name,
                 date: "2023-12-10",
                 bookReceived: "To Kill a Mockingbird"
             }
@@ -88,8 +90,8 @@ export const mockBooks: Book[] = [
         genre: "Classic Fiction",
         condition: "Like New",
         cover_image: "https://covers.openlibrary.org/b/id/8228691-L.jpg",
-        owner_name: "Ion Ionescu",
-        owner_image: "https://i.pravatar.cc/150?img=2",
+        owner_name: USERS.ION_IONESCU.name,
+        owner_image: USERS.ION_IONESCU.avatar,
         availableForSwap: true,
         featured: true,
         rating: 4.8,
@@ -99,8 +101,8 @@ export const mockBooks: Book[] = [
         reviews: [
             {
                 id: 1,
-                userName: "Maria Popescu",
-                userImage: "https://i.pravatar.cc/150?img=1",
+                userName: USERS.MARIA_POPESCU.name,
+                userImage: USERS.MARIA_POPESCU.avatar,
                 rating: 5,
                 comment: "One of the best books I've ever read. A powerful story about justice and morality.",
                 date: "2024-02-01"
@@ -119,8 +121,8 @@ export const mockBooks: Book[] = [
         genre: "Dystopian",
         condition: "Good",
         cover_image: "https://covers.openlibrary.org/b/id/7222246-L.jpg",
-        owner_name: "Ana Georgescu",
-        owner_image: "https://i.pravatar.cc/150?img=3",
+        owner_name: USERS.ANA_GEORGESCU.name,
+        owner_image: USERS.ANA_GEORGESCU.avatar,
         availableForSwap: true,
         featured: false,
         rating: 4.7,
@@ -130,8 +132,8 @@ export const mockBooks: Book[] = [
         reviews: [
             {
                 id: 1,
-                userName: "Mihai Dumitrescu",
-                userImage: "https://i.pravatar.cc/150?img=4",
+                userName: USERS.MIHAI_DUMITRESCU.name,
+                userImage: USERS.MIHAI_DUMITRESCU.avatar,
                 rating: 5,
                 comment: "Chilling and prophetic. More relevant today than ever.",
                 date: "2024-01-25"
@@ -150,8 +152,8 @@ export const mockBooks: Book[] = [
         genre: "Romance",
         condition: "New",
         cover_image: "https://covers.openlibrary.org/b/id/8235657-L.jpg",
-        owner_name: "Maria Popescu",
-        owner_image: "https://i.pravatar.cc/150?img=1",
+        owner_name: USERS.MARIA_POPESCU.name,
+        owner_image: USERS.MARIA_POPESCU.avatar,
         availableForSwap: true,
         featured: false,
         rating: 4.6,
@@ -161,8 +163,8 @@ export const mockBooks: Book[] = [
         reviews: [
             {
                 id: 1,
-                userName: "Elena Vasilescu",
-                userImage: "https://i.pravatar.cc/150?img=5",
+                userName: USERS.ELENA_VASILESCU.name,
+                userImage: USERS.ELENA_VASILESCU.avatar,
                 rating: 5,
                 comment: "A timeless classic. Austen's wit and social commentary are brilliant.",
                 date: "2024-02-05"
@@ -181,8 +183,8 @@ export const mockBooks: Book[] = [
         genre: "Fantasy",
         condition: "Like New",
         cover_image: "https://covers.openlibrary.org/b/id/6979861-L.jpg",
-        owner_name: "Ion Ionescu",
-        owner_image: "https://i.pravatar.cc/150?img=2",
+        owner_name: USERS.ION_IONESCU.name,
+        owner_image: USERS.ION_IONESCU.avatar,
         availableForSwap: true,
         featured: true,
         rating: 4.9,
@@ -192,8 +194,8 @@ export const mockBooks: Book[] = [
         reviews: [
             {
                 id: 1,
-                userName: "Ana Georgescu",
-                userImage: "https://i.pravatar.cc/150?img=3",
+                userName: USERS.ANA_GEORGESCU.name,
+                userImage: USERS.ANA_GEORGESCU.avatar,
                 rating: 5,
                 comment: "A wonderful adventure story! Perfect for all ages.",
                 date: "2024-01-30"
@@ -212,8 +214,8 @@ export const mockBooks: Book[] = [
         genre: "Fantasy",
         condition: "New",
         cover_image: "https://covers.openlibrary.org/b/id/10521270-L.jpg",
-        owner_name: "Maria Popescu",
-        owner_image: "https://i.pravatar.cc/150?img=1",
+        owner_name: USERS.MARIA_POPESCU.name,
+        owner_image: USERS.MARIA_POPESCU.avatar,
         availableForSwap: true,
         featured: false,
         rating: 4.8,
@@ -223,8 +225,8 @@ export const mockBooks: Book[] = [
         reviews: [
             {
                 id: 1,
-                userName: "Ion Ionescu",
-                userImage: "https://i.pravatar.cc/150?img=2",
+                userName: USERS.ION_IONESCU.name,
+                userImage: USERS.ION_IONESCU.avatar,
                 rating: 5,
                 comment: "Magical! Started my love for the entire series.",
                 date: "2024-02-10"
@@ -243,8 +245,8 @@ export const mockBooks: Book[] = [
         genre: "Coming of Age",
         condition: "Good",
         cover_image: "https://covers.openlibrary.org/b/id/8228691-L.jpg",
-        owner_name: "Mihai Dumitrescu",
-        owner_image: "https://i.pravatar.cc/150?img=4",
+        owner_name: USERS.MIHAI_DUMITRESCU.name,
+        owner_image: USERS.MIHAI_DUMITRESCU.avatar,
         availableForSwap: true,
         featured: false,
         rating: 4.3,
@@ -254,8 +256,8 @@ export const mockBooks: Book[] = [
         reviews: [
             {
                 id: 1,
-                userName: "Maria Popescu",
-                userImage: "https://i.pravatar.cc/150?img=1",
+                userName: USERS.MARIA_POPESCU.name,
+                userImage: USERS.MARIA_POPESCU.avatar,
                 rating: 4,
                 comment: "Captures teenage angst perfectly. Holden is unforgettable.",
                 date: "2024-01-18"
@@ -274,8 +276,8 @@ export const mockBooks: Book[] = [
         genre: "Dystopian",
         condition: "Good",
         cover_image: "https://covers.openlibrary.org/b/id/7222246-L.jpg",
-        owner_name: "Elena Vasilescu",
-        owner_image: "https://i.pravatar.cc/150?img=5",
+        owner_name: USERS.ELENA_VASILESCU.name,
+        owner_image: USERS.ELENA_VASILESCU.avatar,
         availableForSwap: true,
         featured: false,
         rating: 4.4,
@@ -285,8 +287,8 @@ export const mockBooks: Book[] = [
         reviews: [
             {
                 id: 1,
-                userName: "Ana Georgescu",
-                userImage: "https://i.pravatar.cc/150?img=3",
+                userName: USERS.ANA_GEORGESCU.name,
+                userImage: USERS.ANA_GEORGESCU.avatar,
                 rating: 4,
                 comment: "Thought-provoking and eerily prescient about our future.",
                 date: "2024-02-03"
@@ -305,8 +307,8 @@ export const mockBooks: Book[] = [
         genre: "Philosophical",
         condition: "Like New",
         cover_image: "https://covers.openlibrary.org/b/id/8235657-L.jpg",
-        owner_name: "Mihai Dumitrescu",
-        owner_image: "https://i.pravatar.cc/150?img=4",
+        owner_name: USERS.MIHAI_DUMITRESCU.name,
+        owner_image: USERS.MIHAI_DUMITRESCU.avatar,
         availableForSwap: true,
         featured: false,
         rating: 4.5,
@@ -316,8 +318,8 @@ export const mockBooks: Book[] = [
         reviews: [
             {
                 id: 1,
-                userName: "Elena Vasilescu",
-                userImage: "https://i.pravatar.cc/150?img=5",
+                userName: USERS.ELENA_VASILESCU.name,
+                userImage: USERS.ELENA_VASILESCU.avatar,
                 rating: 5,
                 comment: "Inspiring and beautifully written. Changed my perspective on life.",
                 date: "2024-01-22"
@@ -336,8 +338,8 @@ export const mockBooks: Book[] = [
         genre: "Psychological",
         condition: "Good",
         cover_image: "https://covers.openlibrary.org/b/id/8228691-L.jpg",
-        owner_name: "Elena Vasilescu",
-        owner_image: "https://i.pravatar.cc/150?img=5",
+        owner_name: USERS.ELENA_VASILESCU.name,
+        owner_image: USERS.ELENA_VASILESCU.avatar,
         availableForSwap: true,
         featured: false,
         rating: 4.7,
@@ -347,8 +349,8 @@ export const mockBooks: Book[] = [
         reviews: [
             {
                 id: 1,
-                userName: "Ion Ionescu",
-                userImage: "https://i.pravatar.cc/150?img=2",
+                userName: USERS.ION_IONESCU.name,
+                userImage: USERS.ION_IONESCU.avatar,
                 rating: 5,
                 comment: "A masterpiece of psychological fiction. Intense and profound.",
                 date: "2024-01-28"
@@ -367,8 +369,8 @@ export const mockBooks: Book[] = [
         genre: "Historical",
         condition: "Like New",
         cover_image: "https://covers.openlibrary.org/b/id/6979861-L.jpg",
-        owner_name: "Ion Ionescu",
-        owner_image: "https://i.pravatar.cc/150?img=2",
+        owner_name: USERS.ION_IONESCU.name,
+        owner_image: USERS.ION_IONESCU.avatar,
         availableForSwap: true,
         featured: false,
         rating: 4.6,
@@ -378,8 +380,8 @@ export const mockBooks: Book[] = [
         reviews: [
             {
                 id: 1,
-                userName: "Maria Popescu",
-                userImage: "https://i.pravatar.cc/150?img=1",
+                userName: USERS.MARIA_POPESCU.name,
+                userImage: USERS.MARIA_POPESCU.avatar,
                 rating: 5,
                 comment: "Beautifully written and deeply moving. A unique perspective on WWII.",
                 date: "2024-02-08"
@@ -398,8 +400,8 @@ export const mockBooks: Book[] = [
         genre: "Fantasy",
         condition: "Fair",
         cover_image: "https://covers.openlibrary.org/b/id/9255566-L.jpg",
-        owner_name: "Ana Georgescu",
-        owner_image: "https://i.pravatar.cc/150?img=3",
+        owner_name: USERS.ANA_GEORGESCU.name,
+        owner_image: USERS.ANA_GEORGESCU.avatar,
         availableForSwap: false,
         featured: true,
         rating: 4.9,
@@ -409,8 +411,8 @@ export const mockBooks: Book[] = [
         reviews: [
             {
                 id: 1,
-                userName: "Mihai Dumitrescu",
-                userImage: "https://i.pravatar.cc/150?img=4",
+                userName: USERS.MIHAI_DUMITRESCU.name,
+                userImage: USERS.MIHAI_DUMITRESCU.avatar,
                 rating: 5,
                 comment: "The greatest fantasy epic ever written. A masterwork of world-building.",
                 date: "2024-01-12"
@@ -418,7 +420,7 @@ export const mockBooks: Book[] = [
         ],
         swapHistory: [
             {
-                swappedWith: "Maria Popescu",
+                swappedWith: USERS.MARIA_POPESCU.name,
                 date: "2023-11-15",
                 bookReceived: "The Hobbit"
             }
@@ -430,5 +432,4 @@ export const mockBooks: Book[] = [
         publisher: "Allen & Unwin"
     },
 ];
-
 
