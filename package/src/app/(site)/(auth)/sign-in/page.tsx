@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title:
-    "Sign In | BlogForge",
+    "Sign In | Read & Swap",
 };
 
 const SignIn = () => {

@@ -1,6 +1,5 @@
 "use client";
 import Logo from "@/app/components/layout/logo"
-import SocialSignIn from "../SocialSignIn"
 import Link from "next/link";
 import Loader from "@/app/components/shared/loader";
 import { useState } from "react";
@@ -70,15 +69,6 @@ const Signin = () => {
                                 <div className="mb-10 flex justify-center">
                                     <Logo />
                                 </div>
-
-                                <SocialSignIn actionText="Sign In" />
-
-                                <span className="z-1 relative my-8 block text-center">
-                                    <span className="-z-1 absolute left-0 top-1/2 block h-px w-full bg-primary/20 dark:bg-white/20"></span>
-                                    <span className="text-sm relative z-10 inline-block text-navyGray dark:text-white/80 bg-white dark:bg-surfaceDark px-3">
-                                        OR
-                                    </span>
-                                </span>
 
                                 <form onSubmit={handleSubmit}>
                                     <div className="mb-5 text-left">
