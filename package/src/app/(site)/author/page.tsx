@@ -3,7 +3,7 @@ import { getAllBlogs } from "@/lib/blogmarkdown";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Author | BlogForge",
+    title: "Author | Read & Swap",
 };
 
 export default function Page() {

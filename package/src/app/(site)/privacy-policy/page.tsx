@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 export const metadata: Metadata = {
-    title: "Privacy Policy | Blogforge",
+    title: "Privacy Policy | Read & Swap",
 };
 
 export default function Page() {
