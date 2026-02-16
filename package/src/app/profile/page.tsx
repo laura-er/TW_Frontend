@@ -59,13 +59,37 @@ const stats = [
 export default function ProfilePage() {
     const [activeTab, setActiveTab] = useState<"myBooks" | "favorites">("myBooks");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [myBooksLocal, setMyBooksLocal] = useState<typeof mockBooks>([]);
 
-    const userBooks = mockBooks.filter((book) => book.owner_name === currentUser.name);
+    const userBooks = [
+        ...myBooksLocal,
+        ...mockBooks.filter((book) => book.owner_name === currentUser.name)
+    ];
     const favoriteBooks = mockBooks.filter((book) => [1, 3, 6, 9].includes(book.id));
     const displayBooks = activeTab === "myBooks" ? userBooks : favoriteBooks;
 
     const handleAddBook = (bookData: BookFormData) => {
-        console.log('New book data:', bookData);
+        // Creează cartea nouă cu TOATE proprietățile necesare pentru tipul Book
+        const newBook = {
+            id: Date.now(),
+            title: bookData.title,
+            author: bookData.author,
+            cover_image: bookData.coverImage || 'https://via.placeholder.com/400x600?text=No+Cover',
+            condition: bookData.condition,
+            genre: bookData.genre,
+            published_year: bookData.publishedYear,
+            publishYear: bookData.publishedYear ? parseInt(bookData.publishedYear) : new Date().getFullYear(),
+            description: bookData.description,
+            owner_name: currentUser.name,
+            owner_image: currentUser.avatar,
+            rating: 0,
+            available: true,
+            availableForSwap: true,
+            featured: false,
+        } as (typeof mockBooks)[0];
+        
+        // Adaugă cartea la listă
+        setMyBooksLocal(prev => [newBook, ...prev]);
         alert(`Book "${bookData.title}" added successfully!`);
     };
 
