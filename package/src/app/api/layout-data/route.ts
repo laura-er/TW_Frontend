@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 const menuData = [
     { label: 'Home', href: '/' },
+    { label: 'My Profile', href: '/profile' },
     {
         label: 'Pages', href: '#',
         submenu: [
