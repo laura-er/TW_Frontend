@@ -9,7 +9,7 @@ import { useState } from 'react';
 export default function BookDetailPage() {
     const params = useParams();
     const id = params.id as string;
-    
+
     const book = mockBooks.find(b => b.id === parseInt(id));
     const [isFavorite, setIsFavorite] = useState(false);
 
@@ -57,7 +57,7 @@ export default function BookDetailPage() {
                                     priority
                                 />
                                 {book.availableForSwap && (
-                                    <div className="absolute top-4 left-4 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                                    <div className="absolute top-4 left-4 bg-primary text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
                                         Available for Swap
                                     </div>
                                 )}
@@ -276,3 +276,4 @@ export default function BookDetailPage() {
         </div>
     );
 }
+
