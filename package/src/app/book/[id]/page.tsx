@@ -14,6 +14,7 @@ export default function BookDetailPage() {
     const book = mockBooks.find(b => b.id === parseInt(id));
     const [isFavorite, setIsFavorite] = useState(false);
     const [showReviewForm, setShowReviewForm] = useState(false);
+    const [reviews, setReviews] = useState(book?.reviews || []);
     const [newReview, setNewReview] = useState({
         rating: 5,
         comment: '',
@@ -23,8 +24,8 @@ export default function BookDetailPage() {
 
     if (!book) {
         return (
-            <div className="container mx-auto px-6 py-20 text-center bg-gradient-to-br from-slate-50 to-blue-50/50 dark:from-slate-900 dark:to-blue-950/50 min-h-screen">
-                <div className="backdrop-blur-xl bg-white/80 dark:bg-slate-800/80 rounded-3xl p-12 shadow-2xl border border-white/50 dark:border-slate-700/50 max-w-2xl mx-auto">
+            <div className="container mx-auto px-6 py-20 text-center bg-gradient-to-br from-slate-50 to-blue-50/50 dark:from-gray-900 dark:to-gray-950 min-h-screen">
+                <div className="backdrop-blur-xl bg-white/90 dark:bg-gray-800/90 rounded-3xl p-12 shadow-2xl border border-gray-200 dark:border-gray-700 max-w-2xl mx-auto">
                     <h1 className="text-4xl font-bold text-navyGray dark:text-white mb-8">
                         Cartea nu a fost găsită
                     </h1>
@@ -49,19 +50,19 @@ export default function BookDetailPage() {
     const handleAddReview = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (newReview.comment.trim()) {
-            const updatedReviews = [
-                ...(book.reviews || []),
-                {
-                    ...newReview,
-                    id: Date.now(),
-                    date: new Date().toLocaleDateString('ro-RO'),
-                    userImage: newReview.userImage
-                }
-            ];
+            const newReviewItem = {
+                ...newReview,
+                id: Date.now(),
+                date: new Date().toLocaleDateString('ro-RO'),
+            };
 
+            // Update local state
+            setReviews([...reviews, newReviewItem]);
+
+            // Also update mockBooks for persistence (in production, this would be an API call)
             const bookIndex = mockBooks.findIndex(b => b.id === book.id);
             if (bookIndex !== -1) {
-                mockBooks[bookIndex].reviews = updatedReviews;
+                mockBooks[bookIndex].reviews = [...reviews, newReviewItem];
             }
 
             setNewReview({ rating: 5, comment: '', userName: 'Tu', userImage: 'https://ui-avatars.com/api/?name=Tu&background=5D87FF&color=fff&size=128' });
@@ -69,18 +70,18 @@ export default function BookDetailPage() {
         }
     };
 
-    const averageRating = book.reviews && book.reviews.length > 0
-        ? (book.reviews.reduce((sum, r) => sum + r.rating, 0) / book.reviews.length).toFixed(1)
+    const averageRating = reviews && reviews.length > 0
+        ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
         : 'N/A';
 
     return (
-        <div className="bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-100/50 dark:from-slate-950 dark:via-blue-950/30 dark:to-indigo-950/50 min-h-screen">
+        <div className="bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-100/50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 min-h-screen">
             <div className="container mx-auto px-4 sm:px-6 py-8 pt-24 md:pt-32">
 
                 {/* Back Button */}
                 <Link
                     href="/"
-                    className="inline-flex items-center gap-2 text-navyGray dark:text-white hover:text-primary-600 dark:hover:text-primary-400 mb-8 px-4 py-3 bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl rounded-xl shadow-lg hover:shadow-xl border border-white/50 dark:border-slate-700/50 transition-all duration-300 hover:-translate-y-0.5 group"
+                    className="inline-flex items-center gap-2 text-gray-900 dark:text-gray-100 hover:text-[#5D87FF] dark:hover:text-[#5D87FF] mb-8 px-4 py-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-xl shadow-lg hover:shadow-xl border border-gray-200/50 dark:border-gray-700/50 transition-all duration-300 hover:-translate-y-0.5 group"
                 >
                     <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -93,7 +94,7 @@ export default function BookDetailPage() {
 
                     {/* Left Column - Book Cover */}
                     <div className="lg:col-span-1">
-                        <div className="backdrop-blur-xl bg-white/70 dark:bg-slate-800/70 rounded-2xl overflow-hidden shadow-xl border border-white/50 dark:border-slate-700/50 sticky top-24 transition-all duration-300 hover:shadow-2xl">
+                        <div className="backdrop-blur-xl bg-white/80 dark:bg-gray-800/80 rounded-2xl overflow-hidden shadow-xl border border-gray-200/50 dark:border-gray-700/50 sticky top-24 transition-all duration-300 hover:shadow-2xl">
 
                             {/* Cover Image */}
                             <div className="relative group">
@@ -109,7 +110,7 @@ export default function BookDetailPage() {
                                 {/* Badges */}
                                 {book.availableForSwap && (
                                     <div className="absolute top-4 left-4 bg-[#5D87FF] text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm border border-white/20">
-                                        🔄 Disponibilă pentru Swap
+                                        Disponibilă pentru Swap
                                     </div>
                                 )}
                                 {book.featured && (
@@ -124,7 +125,7 @@ export default function BookDetailPage() {
                             <div className="p-6 space-y-3">
                                 <button
                                     onClick={() => setIsFavorite(!isFavorite)}
-                                    className="w-full bg-white/60 dark:bg-slate-700/60 hover:bg-white/90 dark:hover:bg-slate-700/90 backdrop-blur-xl text-navyGray dark:text-white border border-gray-200/50 dark:border-slate-600/50 py-3 px-4 rounded-xl font-semibold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2 group"
+                                    className="w-full bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 backdrop-blur-xl text-gray-900 dark:text-white border border-gray-200 dark:border-gray-600 py-3 px-4 rounded-xl font-semibold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2 group"
                                 >
                                     <svg
                                         className={`w-5 h-5 ${isFavorite ? 'fill-red-500 text-red-500' : 'fill-none'} group-hover:scale-110 transition-transform`}
@@ -150,18 +151,18 @@ export default function BookDetailPage() {
                                 )}
 
                                 {/* Book Stats */}
-                                <div className="pt-4 border-t border-gray-200/50 dark:border-slate-700/50 space-y-2 text-sm">
-                                    <div className="flex justify-between items-center p-2.5 bg-white/40 dark:bg-slate-700/40 rounded-lg">
-                                        <span className="text-navyGray/70 dark:text-slate-300">📖 Stare:</span>
-                                        <span className="font-semibold text-navyGray dark:text-white">{book.condition}</span>
+                                <div className="pt-4 border-t border-gray-200/50 dark:border-gray-700/50 space-y-2 text-sm">
+                                    <div className="flex justify-between items-center p-2.5 bg-white/40 dark:bg-gray-700/40 rounded-lg">
+                                        <span className="text-gray-600 dark:text-gray-300">Stare:</span>
+                                        <span className="font-semibold text-gray-900 dark:text-white">{book.condition}</span>
                                     </div>
-                                    <div className="flex justify-between items-center p-2.5 bg-white/30 dark:bg-slate-700/30 rounded-lg">
-                                        <span className="text-navyGray/70 dark:text-slate-300">📄 Pagini:</span>
-                                        <span className="font-semibold text-navyGray dark:text-white">{book.pages || 'N/A'}</span>
+                                    <div className="flex justify-between items-center p-2.5 bg-white/30 dark:bg-gray-700/30 rounded-lg">
+                                        <span className="text-gray-600 dark:text-gray-300">Pagini:</span>
+                                        <span className="font-semibold text-gray-900 dark:text-white">{book.pages || 'N/A'}</span>
                                     </div>
-                                    <div className="flex justify-between items-center p-2.5 bg-white/40 dark:bg-slate-700/40 rounded-lg">
-                                        <span className="text-navyGray/70 dark:text-slate-300">🌐 Limbă:</span>
-                                        <span className="font-semibold text-navyGray dark:text-white">{book.language || 'Română'}</span>
+                                    <div className="flex justify-between items-center p-2.5 bg-white/40 dark:bg-gray-700/40 rounded-lg">
+                                        <span className="text-gray-600 dark:text-gray-300">Limbă:</span>
+                                        <span className="font-semibold text-gray-900 dark:text-white">{book.language || 'Română'}</span>
                                     </div>
                                 </div>
                             </div>
@@ -172,27 +173,27 @@ export default function BookDetailPage() {
                     <div className="lg:col-span-2 space-y-6">
 
                         {/* Title and Author */}
-                        <div className="backdrop-blur-xl bg-white/70 dark:bg-slate-800/70 rounded-2xl p-6 shadow-xl border border-white/50 dark:border-slate-700/50">
-                            <h1 className="text-3xl md:text-4xl font-bold text-navyGray dark:text-white mb-3 leading-tight">
+                        <div className="backdrop-blur-xl bg-white/80 dark:bg-gray-800/80 rounded-2xl p-6 shadow-xl border border-gray-200/50 dark:border-gray-700/50">
+                            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">
                                 {book.title}
                             </h1>
-                            <p className="text-xl text-primary-600 dark:text-primary-400 font-semibold mb-4">
+                            <p className="text-xl text-[#5D87FF] dark:text-[#7ea0ff] font-semibold mb-4">
                                 de {book.author}
                             </p>
 
                             {/* Rating and Genre */}
-                            <div className="flex items-center gap-4 flex-wrap bg-white/50 dark:bg-slate-700/50 p-4 rounded-xl">
+                            <div className="flex items-center gap-4 flex-wrap bg-white/50 dark:bg-gray-700/50 p-4 rounded-xl">
                                 <div className="flex items-center gap-2 px-3 py-2 bg-yellow-400/20 dark:bg-yellow-500/20 rounded-lg border border-yellow-200/50 dark:border-yellow-600/30">
                                     <div className="flex">
                                         {[...Array(5)].map((_, i) => (
-                                            <svg key={i} className="w-4 h-4 fill-yellow-500" viewBox="0 0 24 24">
+                                            <svg key={i} className="w-4 h-4 fill-yellow-500 dark:fill-yellow-400" viewBox="0 0 24 24">
                                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                                             </svg>
                                         ))}
                                     </div>
                                     <div className="flex items-baseline gap-1">
-                                        <span className="text-lg font-bold text-navyGray dark:text-white">{averageRating}</span>
-                                        <span className="text-sm text-navyGray/70 dark:text-slate-300">({book.reviews?.length || 0})</span>
+                                        <span className="text-lg font-bold text-gray-900 dark:text-white">{averageRating}</span>
+                                        <span className="text-sm text-gray-600 dark:text-gray-300">({reviews?.length || 0})</span>
                                     </div>
                                 </div>
 
@@ -200,55 +201,55 @@ export default function BookDetailPage() {
                                     {book.genre}
                                 </span>
 
-                                <span className="text-sm text-navyGray/70 dark:text-slate-300 font-medium">
+                                <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">
                                     Publicat: {book.publishYear}
                                 </span>
                             </div>
                         </div>
 
                         {/* Description */}
-                        <div className="backdrop-blur-xl bg-white/70 dark:bg-slate-800/70 p-6 rounded-2xl shadow-xl border border-white/50 dark:border-slate-700/50">
-                            <h2 className="text-2xl font-bold text-navyGray dark:text-white mb-4 flex items-center gap-2">
-                                📖 Despre Carte
+                        <div className="backdrop-blur-xl bg-white/80 dark:bg-gray-800/80 p-6 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50">
+                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                                Despre Carte
                             </h2>
-                            <p className="text-base text-navyGray/90 dark:text-slate-200 leading-relaxed text-justify">
+                            <p className="text-base text-gray-700 dark:text-gray-200 leading-relaxed text-justify">
                                 {book.description}
                             </p>
                         </div>
 
                         {/* Long Description */}
                         {book.longDescription && (
-                            <div className="backdrop-blur-xl bg-white/60 dark:bg-slate-800/60 p-6 rounded-2xl shadow-xl border border-white/50 dark:border-slate-700/50">
-                                <h2 className="text-2xl font-bold text-navyGray dark:text-white mb-4 flex items-center gap-2">
-                                    📚 Descriere Detaliată
+                            <div className="backdrop-blur-xl bg-white/70 dark:bg-gray-800/70 p-6 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50">
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                                    Descriere Detaliată
                                 </h2>
-                                <p className="text-base text-navyGray/85 dark:text-slate-300 leading-relaxed whitespace-pre-line">
+                                <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
                                     {book.longDescription}
                                 </p>
                             </div>
                         )}
 
                         {/* Owner Info */}
-                        <div className="backdrop-blur-xl bg-[#5D87FF]/10 dark:bg-[#5D87FF]/20 p-6 rounded-2xl shadow-xl border border-[#5D87FF]/30">
-                            <h2 className="text-2xl font-bold text-navyGray dark:text-white mb-4 flex items-center gap-2">
-                                👤 Proprietar
+                        <div className="backdrop-blur-xl bg-white/80 dark:bg-gray-800/80 p-6 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50">
+                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                                Proprietar
                             </h2>
-                            <div className="flex items-center gap-4 p-4 bg-white/60 dark:bg-slate-800/60 rounded-xl shadow-lg">
+                            <div className="flex items-center gap-4 p-4 bg-white/60 dark:bg-gray-700/60 rounded-xl shadow-lg">
                                 <Image
                                     src={book.owner_image}
                                     alt={book.owner_name}
                                     width={60}
                                     height={60}
-                                    className="rounded-xl shadow-lg ring-2 ring-white/50 dark:ring-slate-700/50"
+                                    className="rounded-xl shadow-lg ring-2 ring-white/50 dark:ring-gray-700/50"
                                 />
                                 <div>
-                                    <p className="text-xl font-bold text-navyGray dark:text-white">{book.owner_name}</p>
+                                    <p className="text-xl font-bold text-gray-900 dark:text-white">{book.owner_name}</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Add Review Button */}
-                        <div className="backdrop-blur-xl bg-[#5D87FF]/10 dark:bg-[#5D87FF]/20 p-6 rounded-2xl shadow-xl border border-[#5D87FF]/30">
+                        <div className="backdrop-blur-xl bg-white/80 dark:bg-gray-800/80 p-6 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50">
                             <button
                                 onClick={() => setShowReviewForm(!showReviewForm)}
                                 className="w-full bg-[#5D87FF] hover:bg-[#4a6fdb] text-white py-4 px-6 rounded-xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 justify-center group"
@@ -262,9 +263,9 @@ export default function BookDetailPage() {
 
                         {/* Review Form */}
                         {showReviewForm && (
-                            <div className="backdrop-blur-2xl bg-white/90 dark:bg-slate-800/90 p-8 rounded-2xl shadow-2xl border border-white/60 dark:border-slate-700/50 animate-in slide-in-from-bottom-4 duration-500">
+                            <div className="backdrop-blur-2xl bg-white/90 dark:bg-gray-800/90 p-8 rounded-2xl shadow-2xl border border-gray-200/60 dark:border-gray-700/50 animate-in slide-in-from-bottom-4 duration-500">
                                 <form onSubmit={handleAddReview} className="space-y-6">
-                                    <h3 className="text-2xl font-bold text-center mb-6 text-[#5D87FF]">
+                                    <h3 className="text-2xl font-bold text-center mb-6 text-[#5D87FF] dark:text-[#7ea0ff]">
                                         Scrie-ți Recenzia
                                     </h3>
 
@@ -278,8 +279,8 @@ export default function BookDetailPage() {
                                                     onClick={() => setNewReview({...newReview, rating: star})}
                                                     className={`w-10 h-10 rounded-lg transition-all duration-300 flex items-center justify-center ${
                                                         star <= newReview.rating
-                                                            ? 'bg-amber-400 text-white shadow-lg hover:scale-110'
-                                                            : 'bg-gray-200 dark:bg-slate-700 text-gray-400 dark:text-slate-500 hover:bg-gray-300 dark:hover:bg-slate-600 hover:scale-110'
+                                                            ? 'bg-amber-400 dark:bg-amber-500 text-white shadow-lg hover:scale-110'
+                                                            : 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 hover:bg-gray-300 dark:hover:bg-gray-600 hover:scale-110'
                                                     }`}
                                                 >
                                                     <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -293,8 +294,8 @@ export default function BookDetailPage() {
                                     <textarea
                                         value={newReview.comment}
                                         onChange={(e) => setNewReview({...newReview, comment: e.target.value})}
-                                        placeholder="Spune-ne ce părere ai despre această carte... ✨"
-                                        className="w-full p-4 text-base bg-white/70 dark:bg-slate-900/50 border-2 border-gray-200/50 dark:border-slate-700/50 text-navyGray dark:text-white placeholder:text-gray-400 dark:placeholder:text-slate-500 rounded-xl focus:border-purple-400 dark:focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-100/50 dark:focus:ring-purple-900/30 resize-vertical shadow-lg transition-all duration-300"
+                                        placeholder="Spune-ne ce părere ai despre această carte..."
+                                        className="w-full p-4 text-base bg-white/80 dark:bg-gray-900/70 border-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 rounded-xl focus:border-[#5D87FF] dark:focus:border-[#7ea0ff] focus:outline-none focus:ring-2 focus:ring-[#5D87FF]/20 dark:focus:ring-[#5D87FF]/30 resize-vertical shadow-lg transition-all duration-300"
                                         rows={4}
                                     />
 
@@ -304,7 +305,6 @@ export default function BookDetailPage() {
                                             disabled={!newReview.comment.trim()}
                                             className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-6 rounded-xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 flex items-center gap-2 justify-center"
                                         >
-                                            <span>✅</span>
                                             Publică Recenzia
                                         </button>
                                         <button
@@ -313,9 +313,8 @@ export default function BookDetailPage() {
                                                 setShowReviewForm(false);
                                                 setNewReview({ rating: 5, comment: '', userName: 'Tu', userImage: 'https://ui-avatars.com/api/?name=Tu&background=5D87FF&color=fff&size=128' });
                                             }}
-                                            className="px-6 py-3 bg-gray-400 dark:bg-slate-700 hover:bg-gray-500 dark:hover:bg-slate-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 justify-center"
+                                            className="px-6 py-3 bg-gray-400 dark:bg-gray-700 hover:bg-gray-500 dark:hover:bg-gray-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 justify-center"
                                         >
-                                            <span>❌</span>
                                             Anulează
                                         </button>
                                     </div>
@@ -324,33 +323,33 @@ export default function BookDetailPage() {
                         )}
 
                         {/* Reviews Section */}
-                        {book.reviews && book.reviews.length > 0 && (
-                            <div className="backdrop-blur-xl bg-white/80 dark:bg-slate-800/80 p-6 rounded-2xl shadow-xl border border-white/50 dark:border-slate-700/50">
-                                <h2 className="text-2xl font-bold text-navyGray dark:text-white mb-6 flex items-center gap-2">
-                                    💬 Recenzii ({book.reviews.length})
+                        {reviews && reviews.length > 0 && (
+                            <div className="backdrop-blur-xl bg-white/80 dark:bg-gray-800/80 p-6 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50">
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                                    Recenzii ({reviews.length})
                                 </h2>
                                 <div className="space-y-4">
-                                    {book.reviews.map(review => (
-                                        <div key={review.id} className="backdrop-blur-xl bg-white/60 dark:bg-slate-700/60 p-5 rounded-xl border border-white/50 dark:border-slate-600/50 shadow-lg hover:shadow-xl transition-all duration-300 group">
+                                    {reviews.map(review => (
+                                        <div key={review.id} className="backdrop-blur-xl bg-white/70 dark:bg-gray-700/70 p-5 rounded-xl border border-gray-200/50 dark:border-gray-600/50 shadow-lg hover:shadow-xl transition-all duration-300 group">
                                             <div className="flex items-start gap-4">
                                                 <Image
                                                     src={review.userImage}
                                                     alt={review.userName}
                                                     width={48}
                                                     height={48}
-                                                    className="rounded-xl shadow-lg ring-2 ring-white/50 dark:ring-slate-600/50 flex-shrink-0"
+                                                    className="rounded-xl shadow-lg ring-2 ring-white/50 dark:ring-gray-600/50 flex-shrink-0"
                                                 />
                                                 <div className="flex-1">
                                                     <div className="flex items-start justify-between mb-2 gap-4">
                                                         <div>
-                                                            <p className="text-lg font-bold text-navyGray dark:text-white">{review.userName}</p>
-                                                            <p className="text-sm text-navyGray/70 dark:text-slate-400">{review.date}</p>
+                                                            <p className="text-lg font-bold text-gray-900 dark:text-white">{review.userName}</p>
+                                                            <p className="text-sm text-gray-600 dark:text-gray-400">{review.date}</p>
                                                         </div>
                                                         <div className="flex items-center gap-0.5 flex-shrink-0">
                                                             {[...Array(5)].map((_, i) => (
                                                                 <svg
                                                                     key={i}
-                                                                    className={`w-4 h-4 ${i < review.rating ? 'fill-yellow-400 text-yellow-400' : 'fill-gray-300 dark:fill-slate-600'}`}
+                                                                    className={`w-4 h-4 ${i < review.rating ? 'fill-yellow-400 dark:fill-yellow-400' : 'fill-gray-300 dark:fill-gray-600'}`}
                                                                     viewBox="0 0 24 24"
                                                                 >
                                                                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -358,7 +357,7 @@ export default function BookDetailPage() {
                                                             ))}
                                                         </div>
                                                     </div>
-                                                    <p className="text-base text-navyGray/90 dark:text-slate-200 leading-relaxed">
+                                                    <p className="text-base text-gray-700 dark:text-gray-200 leading-relaxed">
                                                         {review.comment}
                                                     </p>
                                                 </div>
@@ -374,15 +373,15 @@ export default function BookDetailPage() {
                 {/* Similar Books */}
                 {similarBooks.length > 0 && (
                     <div className="mt-16">
-                        <h2 className="text-3xl font-bold text-navyGray dark:text-white mb-8 text-center">
-                            📚 Cărți Similare
+                        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+                            Cărți Similare
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {similarBooks.map(similarBook => (
                                 <Link
                                     key={similarBook.id}
                                     href={`/book/${similarBook.id}`}
-                                    className="group backdrop-blur-xl bg-white/70 dark:bg-slate-800/70 shadow-xl rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-white/50 dark:border-slate-700/50"
+                                    className="group backdrop-blur-xl bg-white/80 dark:bg-gray-800/80 shadow-xl rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-gray-200/50 dark:border-gray-700/50"
                                 >
                                     <div className="relative h-56 overflow-hidden">
                                         <Image
@@ -394,10 +393,10 @@ export default function BookDetailPage() {
                                         />
                                     </div>
                                     <div className="p-5">
-                                        <h3 className="text-lg font-bold text-navyGray dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2 mb-2">
+                                        <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-[#5D87FF] dark:group-hover:text-[#7ea0ff] transition-colors line-clamp-2 mb-2">
                                             {similarBook.title}
                                         </h3>
-                                        <p className="text-base text-navyGray/80 dark:text-slate-300 font-medium">
+                                        <p className="text-base text-gray-700 dark:text-gray-300 font-medium">
                                             {similarBook.author}
                                         </p>
                                     </div>
