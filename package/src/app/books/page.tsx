@@ -33,30 +33,24 @@ export default function BooksPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-baseInk">
+        <div className="min-h-screen bg-white dark:bg-baseInk pt-32 md:pt-40">
             <div className="container mx-auto px-6 py-12">
-                {/* Header Section - Improved */}
+                {/* Header Section - Redesigned for Better Contrast */}
                 <div className="mb-12 text-center">
-                    <div className="inline-block mb-4">
-                        <div className="text-5xl mb-3">📚</div>
-                    </div>
-                    <h1 className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-700 dark:from-white dark:to-gray-300 mb-4">
+                    <h1 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6">
                         Book Catalog
                     </h1>
-                    <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                         Discover your next great read from our collection of <span className="font-bold text-black dark:text-white">{mockBooks.length}</span> amazing books
                     </p>
                 </div>
 
-                {/* Search and Filters - Enhanced Design */}
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 mb-10 backdrop-blur-sm">
-                    {/* Search Bar - Improved */}
-                    <div className="mb-8">
-                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                            🔍 Search Books
-                        </label>
-                        <div className="relative group">
-                            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-200 transition-colors">
+                {/* Search and Filters - Modern Redesign */}
+                <div className="bg-white dark:bg-gray-800/50 backdrop-blur-xl p-6 md:p-8 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-700/50 mb-10">
+                    {/* Search Bar - Modern Style */}
+                    <div className="mb-6">
+                        <div className="relative">
+                            <div className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400">
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
@@ -66,93 +60,101 @@ export default function BooksPage() {
                                 placeholder="Search by title or author..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-12 pr-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-4 focus:ring-black/10 dark:focus:ring-white/10 focus:border-black dark:focus:border-white bg-gray-50 dark:bg-gray-700 text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-all duration-300 text-lg"
+                                className="w-full pl-14 pr-6 py-4 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500/50 dark:focus:ring-green-400/50 focus:border-green-500 dark:focus:border-green-400 text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-all duration-300 text-base font-medium"
                             />
                         </div>
                     </div>
 
-                    {/* Filters Grid - Enhanced */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {/* Filters Grid - Modern Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {/* Genre Filter */}
-                        <div>
-                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                                📖 Genre
+                        <div className="group">
+                            <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
+                                Genre
                             </label>
-                            <select
-                                value={selectedGenre}
-                                onChange={(e) => setSelectedGenre(e.target.value)}
-                                className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-4 focus:ring-black/10 dark:focus:ring-white/10 focus:border-black dark:focus:border-white bg-gray-50 dark:bg-gray-700 text-black dark:text-white transition-all duration-300 cursor-pointer hover:border-gray-400 dark:hover:border-gray-500"
-                            >
-                                {genres.map(genre => (
-                                    <option key={genre} value={genre}>{genre}</option>
-                                ))}
-                            </select>
+                            <div className="relative">
+                                <select
+                                    value={selectedGenre}
+                                    onChange={(e) => setSelectedGenre(e.target.value)}
+                                    style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}
+                                    className="w-full appearance-none px-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500/50 dark:focus:ring-green-400/50 focus:border-green-500 dark:focus:border-green-400 text-black dark:text-white transition-all duration-300 cursor-pointer font-semibold text-[15px] hover:border-gray-300 dark:hover:border-gray-600 hover:bg-white dark:hover:bg-gray-800/50"
+                                >
+                                    {genres.map(genre => (
+                                        <option key={genre} value={genre} className="py-3 font-medium">{genre}</option>
+                                    ))}
+                                </select>
+                                <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Condition Filter */}
-                        <div>
-                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                                ⭐ Condition
+                        <div className="group">
+                            <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
+                                Condition
                             </label>
-                            <select
-                                value={selectedCondition}
-                                onChange={(e) => setSelectedCondition(e.target.value)}
-                                className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-4 focus:ring-black/10 dark:focus:ring-white/10 focus:border-black dark:focus:border-white bg-gray-50 dark:bg-gray-700 text-black dark:text-white transition-all duration-300 cursor-pointer hover:border-gray-400 dark:hover:border-gray-500"
-                            >
-                                {conditions.map(condition => (
-                                    <option key={condition} value={condition}>{condition}</option>
-                                ))}
-                            </select>
+                            <div className="relative">
+                                <select
+                                    value={selectedCondition}
+                                    onChange={(e) => setSelectedCondition(e.target.value)}
+                                    style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}
+                                    className="w-full appearance-none px-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500/50 dark:focus:ring-green-400/50 focus:border-green-500 dark:focus:border-green-400 text-black dark:text-white transition-all duration-300 cursor-pointer font-semibold text-[15px] hover:border-gray-300 dark:hover:border-gray-600 hover:bg-white dark:hover:bg-gray-800/50"
+                                >
+                                    {conditions.map(condition => (
+                                        <option key={condition} value={condition} className="py-3 font-medium">{condition}</option>
+                                    ))}
+                                </select>
+                                <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
 
-                        {/* Available Only Checkbox */}
+                        {/* Available Only Toggle */}
                         <div className="flex items-end">
-                            <label className="flex items-center space-x-3 cursor-pointer group">
-                                <div className="relative">
-                                    <input
-                                        type="checkbox"
-                                        checked={availableOnly}
-                                        onChange={(e) => setAvailableOnly(e.target.checked)}
-                                        className="w-6 h-6 rounded-lg border-2 border-gray-300 dark:border-gray-600 checked:bg-green-500 checked:border-green-500 focus:ring-4 focus:ring-green-500/20 transition-all cursor-pointer"
-                                    />
-                                    {availableOnly && (
-                                        <svg className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-white pointer-events-none" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                        </svg>
-                                    )}
-                                </div>
-                                <span className="text-gray-700 dark:text-gray-300 font-medium group-hover:text-black dark:group-hover:text-white transition-colors">
-                  Available for swap only
-                </span>
-                            </label>
+                            <button
+                                onClick={() => setAvailableOnly(!availableOnly)}
+                                className={`w-full px-4 py-3.5 rounded-xl font-bold text-[15px] transition-all duration-300 ${
+                                    availableOnly
+                                        ? 'bg-green-500 dark:bg-green-600 text-white shadow-lg shadow-green-500/30'
+                                        : 'bg-gray-50 dark:bg-gray-900/50 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-white dark:hover:bg-gray-800/50'
+                                }`}
+                            >
+                                {availableOnly ? '✓ Available Only' : 'Show All'}
+                            </button>
                         </div>
 
                         {/* Clear Filters Button */}
                         <div className="flex items-end">
                             <button
                                 onClick={clearFilters}
-                                className="w-full px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 font-semibold"
+                                className="w-full px-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-white dark:hover:bg-gray-800/50 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300 font-bold text-[15px]"
                             >
-                                Clear Filters
+                                Clear All
                             </button>
                         </div>
                     </div>
                 </div>
 
-                {/* Results Counter - Styled */}
+                {/* Results Counter - Modern Style */}
                 <div className="mb-8 flex items-center justify-between flex-wrap gap-4">
-                    <div className="text-lg text-gray-600 dark:text-gray-400">
-                        Showing <span className="font-bold text-2xl text-black dark:text-white mx-1">{filteredBooks.length}</span>
+                    <div className="text-base font-medium text-gray-600 dark:text-gray-400">
+                        Showing <span className="font-bold text-xl text-black dark:text-white mx-1">{filteredBooks.length}</span>
                         of <span className="font-semibold text-black dark:text-white">{mockBooks.length}</span> books
                     </div>
 
-                    {/* Stats Pills */}
-                    <div className="flex gap-3 flex-wrap">
-                        <div className="px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm font-semibold">
-                            ✓ {mockBooks.filter(b => b.availableForSwap).length} Available
+                    {/* Stats Pills - Modern Design */}
+                    <div className="flex gap-2 flex-wrap">
+                        <div className="px-3 py-1.5 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 rounded-lg text-xs font-bold uppercase tracking-wide border border-green-200 dark:border-green-800">
+                            {mockBooks.filter(b => b.availableForSwap).length} Available
                         </div>
-                        <div className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-semibold">
-                            🔒 {mockBooks.filter(b => !b.availableForSwap).length} Not Available
+                        <div className="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-lg text-xs font-bold uppercase tracking-wide border border-gray-200 dark:border-gray-700">
+                            {mockBooks.filter(b => !b.availableForSwap).length} Not Available
                         </div>
                     </div>
                 </div>
@@ -185,3 +187,4 @@ export default function BooksPage() {
         </div>
     );
 }
+
