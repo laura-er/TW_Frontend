@@ -12,7 +12,6 @@ interface AddBookModalProps {
 export interface BookFormData {
   title: string;
   author: string;
-  isbn: string;
   condition: 'New' | 'Like New' | 'Good' | 'Fair' | 'Poor';
   genre: string;
   publishedYear: string;
@@ -24,7 +23,6 @@ const AddBookModal: React.FC<AddBookModalProps> = ({ isOpen, onClose, onSubmit }
   const [formData, setFormData] = useState<BookFormData>({
     title: '',
     author: '',
-    isbn: '',
     condition: 'Good',
     genre: '',
     publishedYear: '',
@@ -35,10 +33,10 @@ const AddBookModal: React.FC<AddBookModalProps> = ({ isOpen, onClose, onSubmit }
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(formData);
+    // Reset form
     setFormData({
       title: '',
       author: '',
-      isbn: '',
       condition: 'Good',
       genre: '',
       publishedYear: '',
@@ -79,24 +77,27 @@ const AddBookModal: React.FC<AddBookModalProps> = ({ isOpen, onClose, onSubmit }
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-xl transition-all">
-                <div className="flex items-center justify-between mb-6">
-                  <Dialog.Title className="text-2xl font-bold text-navyGray dark:text-white">
+              <Dialog.Panel className="w-full max-w-xl max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white dark:bg-slate-800 p-5 shadow-xl transition-all">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-5">
+                  <Dialog.Title className="text-xl font-bold text-navyGray dark:text-white">
                     Add New Book
                   </Dialog.Title>
                   <button
                     onClick={onClose}
-                    className="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors"
+                    className="rounded-lg p-1.5 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors"
                   >
-                    <svg className="w-6 h-6 text-navyGray dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-navyGray dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                   </button>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Form */}
+                <form onSubmit={handleSubmit} className="space-y-3">
+                  {/* Title */}
                   <div>
-                    <label htmlFor="title" className="block text-sm font-semibold text-navyGray dark:text-white mb-2">
+                    <label htmlFor="title" className="block text-sm font-semibold text-navyGray dark:text-white mb-1.5">
                       Book Title *
                     </label>
                     <input
@@ -111,8 +112,9 @@ const AddBookModal: React.FC<AddBookModalProps> = ({ isOpen, onClose, onSubmit }
                     />
                   </div>
 
+                  {/* Author */}
                   <div>
-                    <label htmlFor="author" className="block text-sm font-semibold text-navyGray dark:text-white mb-2">
+                    <label htmlFor="author" className="block text-sm font-semibold text-navyGray dark:text-white mb-1.5">
                       Author *
                     </label>
                     <input
@@ -127,40 +129,26 @@ const AddBookModal: React.FC<AddBookModalProps> = ({ isOpen, onClose, onSubmit }
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="isbn" className="block text-sm font-semibold text-navyGray dark:text-white mb-2">
-                        ISBN
-                      </label>
-                      <input
-                        type="text"
-                        id="isbn"
-                        name="isbn"
-                        value={formData.isbn}
-                        onChange={handleChange}
-                        className="input-class bg-white dark:bg-slate-700 text-navyGray dark:text-white"
-                        placeholder="978-3-16-148410-0"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="publishedYear" className="block text-sm font-semibold text-navyGray dark:text-white mb-2">
-                        Published Year
-                      </label>
-                      <input
-                        type="text"
-                        id="publishedYear"
-                        name="publishedYear"
-                        value={formData.publishedYear}
-                        onChange={handleChange}
-                        className="input-class bg-white dark:bg-slate-700 text-navyGray dark:text-white"
-                        placeholder="2024"
-                      />
-                    </div>
+                  {/* Published Year */}
+                  <div>
+                    <label htmlFor="publishedYear" className="block text-sm font-semibold text-navyGray dark:text-white mb-1.5">
+                      Published Year
+                    </label>
+                    <input
+                      type="text"
+                      id="publishedYear"
+                      name="publishedYear"
+                      value={formData.publishedYear}
+                      onChange={handleChange}
+                      className="input-class bg-white dark:bg-slate-700 text-navyGray dark:text-white"
+                      placeholder="2024"
+                    />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Condition & Genre */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
-                      <label htmlFor="condition" className="block text-sm font-semibold text-navyGray dark:text-white mb-2">
+                      <label htmlFor="condition" className="block text-sm font-semibold text-navyGray dark:text-white mb-1.5">
                         Condition *
                       </label>
                       <select
@@ -179,7 +167,7 @@ const AddBookModal: React.FC<AddBookModalProps> = ({ isOpen, onClose, onSubmit }
                       </select>
                     </div>
                     <div>
-                      <label htmlFor="genre" className="block text-sm font-semibold text-navyGray dark:text-white mb-2">
+                      <label htmlFor="genre" className="block text-sm font-semibold text-navyGray dark:text-white mb-1.5">
                         Genre *
                       </label>
                       <input
@@ -195,8 +183,9 @@ const AddBookModal: React.FC<AddBookModalProps> = ({ isOpen, onClose, onSubmit }
                     </div>
                   </div>
 
+                  {/* Cover Image URL */}
                   <div>
-                    <label htmlFor="coverImage" className="block text-sm font-semibold text-navyGray dark:text-white mb-2">
+                    <label htmlFor="coverImage" className="block text-sm font-semibold text-navyGray dark:text-white mb-1.5">
                       Cover Image URL
                     </label>
                     <input
@@ -210,32 +199,34 @@ const AddBookModal: React.FC<AddBookModalProps> = ({ isOpen, onClose, onSubmit }
                     />
                   </div>
 
+                  {/* Description */}
                   <div>
-                    <label htmlFor="description" className="block text-sm font-semibold text-navyGray dark:text-white mb-2">
+                    <label htmlFor="description" className="block text-sm font-semibold text-navyGray dark:text-white mb-1.5">
                       Description
                     </label>
                     <textarea
                       id="description"
                       name="description"
-                      rows={4}
+                      rows={2}
                       value={formData.description}
                       onChange={handleChange}
                       className="input-class bg-white dark:bg-slate-700 text-navyGray dark:text-white resize-none"
-                      placeholder="Brief description of the book..."
+                      placeholder="Brief description..."
                     />
                   </div>
 
-                  <div className="flex gap-3 pt-4">
+                  {/* Buttons */}
+                  <div className="flex gap-3 pt-3">
                     <button
                       type="button"
                       onClick={onClose}
-                      className="flex-1 rounded-lg border-2 border-gray-300 dark:border-slate-600 px-6 py-3 font-semibold text-navyGray dark:text-white hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors"
+                      className="flex-1 rounded-lg border-2 border-gray-300 dark:border-slate-600 px-5 py-2.5 font-semibold text-navyGray dark:text-white hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors"
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
-                      className="flex-1 rounded-lg bg-primary hover:bg-primary/90 px-6 py-3 font-semibold text-white shadow-lg transition-colors"
+                      className="flex-1 rounded-lg bg-primary hover:bg-primary/90 px-5 py-2.5 font-semibold text-white shadow-lg transition-colors"
                     >
                       Add Book
                     </button>
