@@ -60,7 +60,7 @@ export default function BooksPage() {
                                 placeholder="Search by title or author..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-14 pr-6 py-4 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500/50 dark:focus:ring-green-400/50 focus:border-green-500 dark:focus:border-green-400 text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-all duration-300 text-base font-medium"
+                                className="w-full pl-14 pr-6 py-4 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/50 dark:focus:ring-primary/50 focus:border-primary dark:focus:border-primary text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-all duration-300 text-base font-medium"
                             />
                         </div>
                     </div>
@@ -77,7 +77,7 @@ export default function BooksPage() {
                                     value={selectedGenre}
                                     onChange={(e) => setSelectedGenre(e.target.value)}
                                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}
-                                    className="w-full appearance-none px-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500/50 dark:focus:ring-green-400/50 focus:border-green-500 dark:focus:border-green-400 text-black dark:text-white transition-all duration-300 cursor-pointer font-semibold text-[15px] hover:border-gray-300 dark:hover:border-gray-600 hover:bg-white dark:hover:bg-gray-800/50"
+                                    className="w-full appearance-none px-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 dark:focus:ring-primary/50 focus:border-primary dark:focus:border-primary text-black dark:text-white transition-all duration-300 cursor-pointer font-semibold text-[15px] hover:border-gray-300 dark:hover:border-gray-600 hover:bg-white dark:hover:bg-gray-800/50"
                                 >
                                     {genres.map(genre => (
                                         <option key={genre} value={genre} className="py-3 font-medium">{genre}</option>
@@ -101,7 +101,7 @@ export default function BooksPage() {
                                     value={selectedCondition}
                                     onChange={(e) => setSelectedCondition(e.target.value)}
                                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}
-                                    className="w-full appearance-none px-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500/50 dark:focus:ring-green-400/50 focus:border-green-500 dark:focus:border-green-400 text-black dark:text-white transition-all duration-300 cursor-pointer font-semibold text-[15px] hover:border-gray-300 dark:hover:border-gray-600 hover:bg-white dark:hover:bg-gray-800/50"
+                                    className="w-full appearance-none px-4 py-3.5 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 dark:focus:ring-primary/50 focus:border-primary dark:focus:border-primary text-black dark:text-white transition-all duration-300 cursor-pointer font-semibold text-[15px] hover:border-gray-300 dark:hover:border-gray-600 hover:bg-white dark:hover:bg-gray-800/50"
                                 >
                                     {conditions.map(condition => (
                                         <option key={condition} value={condition} className="py-3 font-medium">{condition}</option>
@@ -121,7 +121,7 @@ export default function BooksPage() {
                                 onClick={() => setAvailableOnly(!availableOnly)}
                                 className={`w-full px-4 py-3.5 rounded-xl font-bold text-[15px] transition-all duration-300 ${
                                     availableOnly
-                                        ? 'bg-green-500 dark:bg-green-600 text-white shadow-lg shadow-green-500/30'
+                                        ? 'bg-primary dark:bg-primary text-white shadow-lg shadow-primary/30'
                                         : 'bg-gray-50 dark:bg-gray-900/50 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-white dark:hover:bg-gray-800/50'
                                 }`}
                             >
@@ -150,7 +150,7 @@ export default function BooksPage() {
 
                     {/* Stats Pills - Modern Design */}
                     <div className="flex gap-2 flex-wrap">
-                        <div className="px-3 py-1.5 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 rounded-lg text-xs font-bold uppercase tracking-wide border border-green-200 dark:border-green-800">
+                        <div className="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary border border-primary/30 dark:border-primary/40 rounded-lg text-xs font-bold uppercase tracking-wide">
                             {mockBooks.filter(b => b.availableForSwap).length} Available
                         </div>
                         <div className="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-lg text-xs font-bold uppercase tracking-wide border border-gray-200 dark:border-gray-700">
@@ -187,4 +187,3 @@ export default function BooksPage() {
         </div>
     );
 }
-

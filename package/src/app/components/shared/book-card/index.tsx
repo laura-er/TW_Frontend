@@ -42,9 +42,9 @@ const BookCard = ({ book }: BookCardProps) => {
             </svg>
           </button>
 
-          {/* Availability Badge - IMPROVED */}
+          {/* Availability Badge - PRIMARY BLUE */}
           {book?.availableForSwap ? (
-              <div className="absolute top-4 left-4 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-1.5 animate-pulse">
+              <div className="absolute top-4 left-4 bg-gradient-to-r from-primary to-primary/90 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-1.5 animate-pulse">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
@@ -123,11 +123,11 @@ const BookCard = ({ book }: BookCardProps) => {
               View Details
             </Link>
 
-            {/* Swap Button - Shows for both available and unavailable */}
+            {/* Swap Button - PRIMARY BLUE */}
             {book?.availableForSwap ? (
                 <Link
                     href={`/swap/${book?.id}`}
-                    className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-2.5 px-4 rounded-lg font-semibold text-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                    className="flex-1 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white py-2.5 px-4 rounded-lg font-semibold text-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                 >
                   Request Swap
                 </Link>
