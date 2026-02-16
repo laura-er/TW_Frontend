@@ -1,16 +1,21 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { signOut } from "next-auth/react";
+
+interface MenuItem {
+    label: string;
+    href: string;
+    submenu?: Array<{label: string; href: string}>;
+}
 
 type MobileSidebarProps = {
     isOpen: boolean;
     onClose: () => void;
-    menuData: any[];
+    menuData: MenuItem[];
     openIndex: number | null;
     toggleSubmenu: (index: number) => void;
-    sessionUser: any;
-    user: { user: any } | null;
+    sessionUser: {user?: string | null; name?: string | null; email?: string | null; image?: string | null} | undefined;
+    user: { user: string } | null;
     handleSignOut: () => void;
 };
 
@@ -71,7 +76,7 @@ const MobileSidebar = ({ isOpen, onClose, menuData, user, sessionUser,openIndex,
                                 </Link>
                                 {item.submenu && openIndex === index && (
                                     <ul className="pl-3 p-2 flex flex-col gap-2.5">
-                                        {item.submenu.map((subItem: any, subIndex: number) => (
+                                        {item.submenu.map((subItem, subIndex: number) => (
                                             <li key={subIndex} className="hover:text-primary">
                                                 <Link
                                                     href={subItem.href}
