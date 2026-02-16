@@ -157,6 +157,7 @@ export default function BookDetailPage() {
                             <p className="text-navyGray dark:text-white/80 leading-relaxed">{book.description}</p>
                         </div>
 
+                        {/* ^-^ */}
                         {/* Long Description */}
                         {book.longDescription && (
                             <div className="bg-white dark:bg-white/5 p-6 rounded-xl shadow-card">
