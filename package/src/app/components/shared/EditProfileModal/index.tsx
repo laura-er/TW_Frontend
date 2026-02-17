@@ -147,13 +147,14 @@ export default function EditProfileModal({ isOpen, onClose, currentUser, onSave 
                         <button
                             type="button"
                             onClick={onClose}
-                            className="flex-1 px-6 py-3 bg-gray-200 dark:bg-slate-700 text-warmBrown dark:text-white rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-slate-600 transition-colors"
+                            className="flex-1 px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-semibold transition-colors"
                         >
                             Cancel
                         </button>
                         <button
                             type="submit"
-                            className="flex-1 px-6 py-3 bg-gray-200 dark:bg-slate-700 text-warmBrown dark:text-white rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-slate-600 transition-colors"
+                            style={{ backgroundColor: '#C17144' }}
+                            className="flex-1 px-6 py-3 text-white rounded-lg font-semibold hover:opacity-90 transition-colors shadow-lg"
                         >
                             Save Changes
                         </button>
